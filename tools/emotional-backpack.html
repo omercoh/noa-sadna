@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>התרמיל הרגשי שלי - נעה כהן מרפאה בעיסוק</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
         
@@ -319,6 +321,26 @@
             box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
         }
 
+        .save-pdf-button {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 20px;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .save-pdf-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+
         .print-instructions {
             background: #e8f5e8;
             padding: 15px;
@@ -382,6 +404,10 @@
             }
             
             .print-button {
+                display: none !important;
+            }
+
+            .save-pdf-button {
                 display: none !important;
             }
             
@@ -587,6 +613,7 @@
                     </div>
                     
                     <button class="print-button" onclick="printBackpack()">הדפס את התרמיל שלי 🖨️</button>
+                    <button class="save-pdf-button" onclick="saveAsPDF()">שמור כ-PDF 📄</button>
                 </div>
             </div>
         </div>
@@ -759,6 +786,121 @@
 
         function printBackpack() {
             window.print();
+        }
+
+        function saveAsPDF() {
+            // Create a temporary div for PDF content
+            const pdfContent = document.createElement('div');
+            pdfContent.style.position = 'fixed';
+            pdfContent.style.left = '-9999px';
+            pdfContent.style.width = '800px';
+            pdfContent.style.padding = '40px';
+            pdfContent.style.backgroundColor = 'white';
+            pdfContent.style.fontFamily = 'Heebo, sans-serif';
+            document.body.appendChild(pdfContent);
+            
+            // Build PDF content with proper styling
+            const today = new Date().toLocaleDateString('he-IL');
+            
+            pdfContent.innerHTML = `
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <div style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+                        <h1 style="font-size: 36px; margin: 0;">🎒 התרמיל הרגשי שלי</h1>
+                        <p style="font-size: 18px; margin: 10px 0 0 0;">מתכוננים יחד לכיתה א'</p>
+                    </div>
+                    <p style="color: #666; font-size: 14px;">תאריך: ${today}</p>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <div style="background: linear-gradient(45deg, #ff6b6b, #ffa726); color: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 15px;">
+                        <h2 style="margin: 0; font-size: 24px;">⭐ החוזקות שלי</h2>
+                    </div>
+                    <div style="padding: 20px; background: #f8f9fa; border-radius: 10px; border-right: 5px solid #ff6b6b;">
+                        ${strengths.length > 0 
+                            ? strengths.map(s => `<p style="margin: 10px 0; font-size: 16px;">• ${s}</p>`).join('')
+                            : '<p style="color: #999; font-style: italic;">טרם נוספו חוזקות</p>'
+                        }
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <div style="background: linear-gradient(45deg, #ff6b6b, #ffa726); color: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 15px;">
+                        <h2 style="margin: 0; font-size: 24px;">🎯 האתגרים שלי</h2>
+                    </div>
+                    <div style="padding: 20px; background: #f8f9fa; border-radius: 10px; border-right: 5px solid #ff6b6b;">
+                        ${challenges.length > 0 
+                            ? challenges.map(c => `<p style="margin: 10px 0; font-size: 16px;">• ${c}</p>`).join('')
+                            : '<p style="color: #999; font-style: italic;">טרם נוספו אתגרים</p>'
+                        }
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <div style="background: linear-gradient(45deg, #ff6b6b, #ffa726); color: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 15px;">
+                        <h2 style="margin: 0; font-size: 24px;">🤝 מה עוזר לי</h2>
+                    </div>
+                    <div style="padding: 20px; background: #f8f9fa; border-radius: 10px; border-right: 5px solid #ff6b6b;">
+                        ${helpItems.length > 0 
+                            ? helpItems.map(h => `<p style="margin: 10px 0; font-size: 16px;">• ${h}</p>`).join('')
+                            : '<p style="color: #999; font-style: italic;">טרם נוספו כלי עזרה</p>'
+                        }
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <div style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 15px 20px; border-radius: 10px; margin-bottom: 15px;">
+                        <h2 style="margin: 0; font-size: 24px;">🎈 הכלי הסודי שלי</h2>
+                    </div>
+                    <div style="padding: 20px; background: #e3f2fd; border-radius: 10px; border-right: 5px solid #2196f3;">
+                        <p style="margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">נשימת הבלון הקסומה - תמיד איתי!</p>
+                        <p style="margin: 5px 0; font-size: 14px;">1. שימו יד על הבטן</p>
+                        <p style="margin: 5px 0; font-size: 14px;">2. נשפו לאט דרך האף ותרגישו איך הבטן מתנפחת כמו בלון</p>
+                        <p style="margin: 5px 0; font-size: 14px;">3. עצרו רגע</p>
+                        <p style="margin: 5px 0; font-size: 14px;">4. נשפו לאט דרך הפה ותרגישו איך הבלון מתרוקן</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px; padding: 20px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 16px;">נעה כהן - מרפאה בעיסוק</p>
+                </div>
+            `;
+            
+            // Use html2canvas to convert the HTML to image, then to PDF
+            html2canvas(pdfContent, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#ffffff'
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
+                const imgWidth = 210; // A4 width in mm
+                const pageHeight = 297; // A4 height in mm
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 0;
+                
+                // Add first page
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+                
+                // Add additional pages if needed
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+                
+                // Save the PDF
+                pdf.save('התרמיל-הרגשי-שלי.pdf');
+                
+                // Remove temporary element
+                document.body.removeChild(pdfContent);
+            }).catch(error => {
+                console.error('Error generating PDF:', error);
+                alert('שגיאה ביצירת ה-PDF. אנא נסה שוב.');
+                document.body.removeChild(pdfContent);
+            });
         }
 
         // Allow Enter key to add items
