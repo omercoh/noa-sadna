@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>התרמיל הרגשי שלי - נעה כהן מרפאה בעיסוק</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            padding: 5px;
+            overflow: hidden;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: white;
+            color: #ff6b6b;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 8px;
+            margin-bottom: 30px;
+            gap: 8px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .tab.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-right: 5px solid #ff6b6b;
+        }
+
+        .section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emoji {
+            font-size: 1.8rem;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            resize: vertical;
+            min-height: 50px;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .add-button {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+        .add-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .items-list {
+            margin-top: 15px;
+        }
+
+        .item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-right: 4px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .remove-button {
+            background: #ff4757;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .breathing-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .balloon {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            border-radius: 50%;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .balloon.expanded {
+            transform: scale(1.3);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .breathing-controls {
+            margin-top: 30px;
+        }
+
+        .breathing-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .breathing-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .breathing-instructions {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-right: 4px solid #2196f3;
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .summary-section h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .print-button {
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 20px;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .print-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .print-instructions {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid #4CAF50;
+            color: #2e7d32;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                background: white;
+                border-radius: 0;
+            }
+            
+            .header {
+                background: white !important;
+                color: #333 !important;
+                border-bottom: 2px solid #B19CD9;
+                page-break-inside: avoid;
+                padding: 15px !important;
+            }
+            
+            .logo {
+                position: static !important;
+                margin: 0 auto 15px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .back-button {
+                display: none !important;
+            }
+            
+            .tabs, .breathing-container, .breathing-controls {
+                display: none !important;
+            }
+            
+            .tab-content {
+                display: block !important;
+            }
+            
+            .summary-section {
+                background: #f8f9fa !important;
+                color: #333 !important;
+                border: 2px solid #B19CD9;
+                margin-top: 10px !important;
+            }
+            
+            .summary-item {
+                background: white !important;
+                border: 1px solid #ddd;
+                margin-bottom: 15px;
+                page-break-inside: avoid;
+            }
+            
+            .print-button {
+                display: none !important;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 30px;
+            }
+            
+            .item {
+                background: white !important;
+                border: 1px solid #ddd !important;
+                page-break-inside: avoid;
+            }
+            
+            .remove-button {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .logo {
+                position: relative;
+                margin: 0 auto 20px;
+                top: 0;
+                left: 0;
+            }
+
+            .back-button {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .header {
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="../index.html" class="back-button">← חזרה לדף הבית</a>
+            <div class="logo">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="95" fill="white" stroke="#E8D5F2" stroke-width="2"/>
+                    <g transform="translate(100, 45)">
+                        <path d="M-30,0 Q-15,-5 0,0 Q15,-5 30,0" stroke="#B19CD9" stroke-width="1.5" fill="none"/>
+                        <g transform="translate(-20, -3)">
+                            <ellipse cx="0" cy="0" rx="6" ry="4" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="-4" cy="-2" rx="4" ry="3" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="4" cy="-2" rx="4" ry="3" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="0" cy="2" rx="3" ry="5" fill="#E8D5F2" stroke="#B19CD9" stroke-width="0.8"/>
+                            <circle cx="0" cy="0" r="1.5" fill="#B19CD9"/>
+                        </g>
+                        <g transform="translate(0, -8)">
+                            <ellipse cx="0" cy="0" rx="7" ry="5" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="-5" cy="-3" rx="4" ry="3" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="5" cy="-3" rx="4" ry="3" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="0" cy="3" rx="3" ry="6" fill="#E8D5F2" stroke="#B19CD9" stroke-width="0.8"/>
+                            <circle cx="0" cy="0" r="1.5" fill="#B19CD9"/>
+                        </g>
+                        <g transform="translate(20, -3)">
+                            <ellipse cx="0" cy="0" rx="6" ry="4" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="-4" cy="-2" rx="4" ry="3" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="4" cy="-2" rx="4" ry="3" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="0" cy="2" rx="3" ry="5" fill="#E8D5F2" stroke="#B19CD9" stroke-width="0.8"/>
+                            <circle cx="0" cy="0" r="1.5" fill="#B19CD9"/>
+                        </g>
+                        <ellipse cx="-35" cy="3" rx="3" ry="8" fill="#D4C5E8" stroke="#B19CD9" stroke-width="0.5"/>
+                        <ellipse cx="35" cy="3" rx="3" ry="8" fill="#D4C5E8" stroke="#B19CD9" stroke-width="0.5"/>
+                    </g>
+                    <g transform="translate(100, 155)">
+                        <path d="M-25,0 Q-10,5 0,0 Q10,5 25,0" stroke="#B19CD9" stroke-width="1.5" fill="none"/>
+                        <g transform="translate(-15, 3)">
+                            <ellipse cx="0" cy="0" rx="5" ry="3" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="-3" cy="-1" rx="3" ry="2" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="3" cy="-1" rx="3" ry="2" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="0" cy="1" rx="2" ry="4" fill="#E8D5F2" stroke="#B19CD9" stroke-width="0.8"/>
+                            <circle cx="0" cy="0" r="1" fill="#B19CD9"/>
+                        </g>
+                        <g transform="translate(15, 3)">
+                            <ellipse cx="0" cy="0" rx="5" ry="3" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="-3" cy="-1" rx="3" ry="2" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="3" cy="-1" rx="3" ry="2" fill="#F0E6FF" stroke="#B19CD9" stroke-width="0.8"/>
+                            <ellipse cx="0" cy="1" rx="2" ry="4" fill="#E8D5F2" stroke="#B19CD9" stroke-width="0.8"/>
+                            <circle cx="0" cy="0" r="1" fill="#B19CD9"/>
+                        </g>
+                        <ellipse cx="-30" cy="-3" rx="2" ry="6" fill="#D4C5E8" stroke="#B19CD9" stroke-width="0.5"/>
+                        <ellipse cx="30" cy="-3" rx="2" ry="6" fill="#D4C5E8" stroke="#B19CD9" stroke-width="0.5"/>
+                    </g>
+                    <text x="100" y="90" text-anchor="middle" font-family="Heebo, Arial, sans-serif" font-size="18" fill="#8B5A9F" font-weight="300">נעה כהן</text>
+                    <text x="100" y="115" text-anchor="middle" font-family="Heebo, Arial, sans-serif" font-size="12" fill="#666" font-weight="400">מרפאה בעיסוק</text>
+                </svg>
+            </div>
+            <h1>🎒 התרמיל הרגשי שלי</h1>
+            <p>מתכוננים יחד לכיתה א' - הורים וילדים</p>
+        </div>
+
+        <div class="main-content">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('strengths')">במה אני טוב</button>
+                <button class="tab" onclick="showTab('challenges')">מה מאתגר אותי</button>
+                <button class="tab" onclick="showTab('help')">מה עוזר לי</button>
+                <button class="tab" onclick="showTab('breathing')">נשימת בלון</button>
+                <button class="tab" onclick="showTab('summary')">התרמיל שלי</button>
+            </div>
+
+            <div id="strengths" class="tab-content active">
+                <div class="section">
+                    <h3><span class="emoji">⭐</span>במה אני טוב?</h3>
+                    <p style="margin-bottom: 20px; color: #666;">חשבו יחד על הדברים שאתם טובים בהם. זה יכול להיות משהו שאתם אוהבים לעשות, משהו שמצליח לכם טוב, או תכונה חיובית שלכם.</p>
+                    <div class="input-group">
+                        <input type="text" id="strengthInput" class="input-field" placeholder="למשל: אני טוב בציור, אני עוזר לאחרים, אני אוהב לשאול שאלות...">
+                        <button class="add-button" onclick="addStrength()">הוסף לתרמיל 🎒</button>
+                    </div>
+                    <div id="strengthsList" class="items-list"></div>
+                </div>
+            </div>
+
+            <div id="challenges" class="tab-content">
+                <div class="section">
+                    <h3><span class="emoji">🎯</span>מה מאתגר אותי?</h3>
+                    <p style="margin-bottom: 20px; color: #666;">זה בסדר שישנם דברים שמאתגרים אותנו! כשאנחנו מכירים את האתגרים שלנו, אנחנו יכולים להתכונן אליהם טוב יותר.</p>
+                    <div class="input-group">
+                        <input type="text" id="challengeInput" class="input-field" placeholder="למשל: קשה לי להיפרד מאמא, אני מתרגש כשפוגש ילדים חדשים...">
+                        <button class="add-button" onclick="addChallenge()">הוסף לתרמיל 🎒</button>
+                    </div>
+                    <div id="challengesList" class="items-list"></div>
+                </div>
+            </div>
+
+            <div id="help" class="tab-content">
+                <div class="section">
+                    <h3><span class="emoji">🤝</span>מה יכול לעזור לי?</h3>
+                    <p style="margin-bottom: 20px; color: #666;">כשמשהו קשה לנו, חשוב לדעת למי ולמה אנחנו יכולים לפנות לעזרה. זה הופך אותנו לחזקים יותר!</p>
+                    <div class="input-group">
+                        <input type="text" id="helpInput" class="input-field" placeholder="למשל: לחבק את הדובי שלי, לדבר עם המורה, לעשות נשימות עמוקות...">
+                        <button class="add-button" onclick="addHelp()">הוסף לתרמיל 🎒</button>
+                    </div>
+                    <div id="helpsList" class="items-list"></div>
+                </div>
+            </div>
+
+            <div id="breathing" class="tab-content">
+                <div class="breathing-container">
+                    <h3><span class="emoji">🎈</span>נשימת הבלון הקסומה</h3>
+                    <div class="breathing-instructions">
+                        <p><strong>איך עושים נשימת בלון?</strong></p>
+                        <p>1. שימו יד על הבטן</p>
+                        <p>2. נשפו לאט דרך האף ותרגישו איך הבטן מתנפחת כמו בלון</p>
+                        <p>3. עצרו רגע</p>
+                        <p>4. נשפו לאט דרך הפה ותרגישו איך הבלון מתרוקן</p>
+                    </div>
+                    
+                    <div class="balloon" id="balloon">
+                        <span id="balloonText">נשימה רגועה</span>
+                    </div>
+                    
+                    <div class="breathing-controls">
+                        <button class="breathing-button" onclick="startBreathing()">התחל נשימת בלון</button>
+                        <button class="breathing-button" onclick="stopBreathing()">עצור</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="summary" class="tab-content">
+                <div class="summary-section">
+                    <h3>🎒 התרמיל הרגשי שלי מוכן!</h3>
+                    <p style="margin-bottom: 20px;">הנה כל מה שלמדתם על עצמכם והכנתם לכיתה א':</p>
+                    
+                    <div class="summary-item">
+                        <h4>⭐ החוזקות שלי:</h4>
+                        <div id="summaryStrengths">טרם נוספו חוזקות</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <h4>🎯 האתגרים שלי:</h4>
+                        <div id="summaryChallenges">טרם נוספו אתגרים</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <h4>🤝 מה שעוזר לי:</h4>
+                        <div id="summaryHelp">טרם נוספו כלי עזרה</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <h4>🎈 הכלי הסודי שלי:</h4>
+                        <div>נשימת הבלון הקסומה - תמיד איתי!</div>
+                    </div>
+                    
+                    <button class="print-button" onclick="printBackpack()">הדפס את התרמיל שלי 🖨️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let strengths = [];
+        let challenges = [];
+        let helpItems = [];
+        let breathingInterval;
+
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Update summary when switching to summary tab
+            if (tabName === 'summary') {
+                updateSummary();
+            }
+        }
+
+        function addStrength() {
+            const input = document.getElementById('strengthInput');
+            const value = input.value.trim();
+            
+            if (value) {
+                strengths.push(value);
+                input.value = '';
+                renderStrengths();
+            }
+        }
+
+        function addChallenge() {
+            const input = document.getElementById('challengeInput');
+            const value = input.value.trim();
+            
+            if (value) {
+                challenges.push(value);
+                input.value = '';
+                renderChallenges();
+            }
+        }
+
+        function addHelp() {
+            const input = document.getElementById('helpInput');
+            const value = input.value.trim();
+            
+            if (value) {
+                helpItems.push(value);
+                input.value = '';
+                renderHelp();
+            }
+        }
+
+        function renderStrengths() {
+            const list = document.getElementById('strengthsList');
+            list.innerHTML = '';
+            
+            strengths.forEach((strength, index) => {
+                const item = document.createElement('div');
+                item.className = 'item';
+                item.innerHTML = `
+                    <span>⭐ ${strength}</span>
+                    <button class="remove-button" onclick="removeStrength(${index})">×</button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function renderChallenges() {
+            const list = document.getElementById('challengesList');
+            list.innerHTML = '';
+            
+            challenges.forEach((challenge, index) => {
+                const item = document.createElement('div');
+                item.className = 'item';
+                item.innerHTML = `
+                    <span>🎯 ${challenge}</span>
+                    <button class="remove-button" onclick="removeChallenge(${index})">×</button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function renderHelp() {
+            const list = document.getElementById('helpsList');
+            list.innerHTML = '';
+            
+            helpItems.forEach((help, index) => {
+                const item = document.createElement('div');
+                item.className = 'item';
+                item.innerHTML = `
+                    <span>🤝 ${help}</span>
+                    <button class="remove-button" onclick="removeHelp(${index})">×</button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function removeStrength(index) {
+            strengths.splice(index, 1);
+            renderStrengths();
+        }
+
+        function removeChallenge(index) {
+            challenges.splice(index, 1);
+            renderChallenges();
+        }
+
+        function removeHelp(index) {
+            helpItems.splice(index, 1);
+            renderHelp();
+        }
+
+        function startBreathing() {
+            const balloon = document.getElementById('balloon');
+            const balloonText = document.getElementById('balloonText');
+            balloon.classList.remove('expanded');
+            balloonText.textContent = 'נשימה רגועה 😌';
+
+            let isInhaling = true;
+            
+            stopBreathing(); // Stop any existing animation
+            
+            breathingInterval = setInterval(() => {
+                if (isInhaling) {
+                    balloon.classList.add('expanded');
+                    balloonText.textContent = 'שאפו לאט דרך האף... 🌬️';
+                } else {
+                    balloon.classList.remove('expanded');
+                    balloonText.textContent = 'נשפו לאט דרך הפה... 💨';
+                }
+                isInhaling = !isInhaling;
+            }, 4000);
+        }
+
+        function stopBreathing() {
+            if (breathingInterval) {
+                clearInterval(breathingInterval);
+                breathingInterval = null;
+            }
+            
+            const balloon = document.getElementById('balloon');
+            const balloonText = document.getElementById('balloonText');
+            balloon.classList.remove('expanded');
+            balloonText.textContent = 'נשימה רגועה 😌';
+        }
+
+        function updateSummary() {
+            document.getElementById('summaryStrengths').innerHTML = 
+                strengths.length > 0 ? strengths.map(s => `• ${s}`).join('<br>') : 'טרם נוספו חוזקות';
+            
+            document.getElementById('summaryChallenges').innerHTML = 
+                challenges.length > 0 ? challenges.map(c => `• ${c}`).join('<br>') : 'טרם נוספו אתגרים';
+            
+            document.getElementById('summaryHelp').innerHTML = 
+                helpItems.length > 0 ? helpItems.map(h => `• ${h}`).join('<br>') : 'טרם נוספו כלי עזרה';
+        }
+
+        function printBackpack() {
+            window.print();
+        }
+
+        // Allow Enter key to add items
+        document.getElementById('strengthInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addStrength();
+            }
+        });
+
+        document.getElementById('challengeInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addChallenge();
+            }
+        });
+
+        document.getElementById('helpInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addHelp();
+            }
+        });
+    </script>
+</body>
+</html>

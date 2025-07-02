@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הגדרות כלים - נעה כהן</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .config-content {
+            padding: 30px;
+        }
+
+        .config-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .config-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .tool-toggle {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .tool-toggle:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .tool-info {
+            flex: 1;
+        }
+
+        .tool-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            right: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(-30px);
+        }
+
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .status-message {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .status-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .coming-soon-badge {
+            background: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        .password-protection {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .password-input {
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            margin: 10px;
+            width: 250px;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .unlock-btn {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .unlock-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .tool-toggle {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="lock-icon">🔒</div>
+            <h1>הגדרות כלים - לוח בקרה למנהל</h1>
+            <p>ניהול והגדרת הכלים הזמינים במערכת</p>
+        </div>
+
+        <div class="config-content">
+            <div class="password-protection" id="passwordSection">
+                <h3>אזור מוגן בסיסמה</h3>
+                <p>הכנס סיסמה כדי לגשת להגדרות</p>
+                <input type="password" class="password-input" id="passwordInput" placeholder="הכנס סיסמה">
+                <button class="unlock-btn" onclick="checkPassword()">🔓 פתח</button>
+            </div>
+
+            <div id="configSection" class="hidden">
+                <div class="config-section">
+                    <h3>כלים זמינים במערכת</h3>
+                    <p style="margin-bottom: 20px; color: #666;">בחר אילו כלים יופיעו בעמוד הראשי</p>
+                    
+                    <div id="toolsList">
+                        <!-- Tools will be dynamically loaded here -->
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="saveConfiguration()">💾 שמור הגדרות</button>
+                    <button class="btn btn-secondary" onclick="resetConfiguration()">🔄 איפוס להגדרות ברירת מחדל</button>
+                    <button class="btn btn-secondary" onclick="goToLanding()">🏠 חזרה לעמוד הראשי</button>
+                </div>
+
+                <div id="statusMessage" class="status-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple password protection
+        const PASSWORD = 'noa2024'; // Change this to your desired password
+
+        // Tool definitions (same as landing page)
+        const allTools = [
+            {
+                id: 'emotional-backpack',
+                title: 'התרמיל הרגשי שלי',
+                icon: '🎒',
+                description: 'כלי אינטראקטיבי להכנה רגשית לכיתה א\'',
+                enabled: true,
+                comingSoon: false
+            },
+            {
+                id: 'daily-routine',
+                title: 'הלוח היומי שלי',
+                icon: '📅',
+                description: 'לוח אינטראקטיבי ליצירת סדר יום מובנה',
+                enabled: false,
+                comingSoon: true
+            },
+            {
+                id: 'feelings-wheel',
+                title: 'גלגל הרגשות',
+                icon: '🎨',
+                description: 'כלי לזיהוי וביטוי רגשות',
+                enabled: false,
+                comingSoon: true
+            }
+        ];
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            if (input.value === PASSWORD) {
+                document.getElementById('passwordSection').classList.add('hidden');
+                document.getElementById('configSection').classList.remove('hidden');
+                loadTools();
+            } else {
+                alert('סיסמה שגויה');
+                input.value = '';
+            }
+        }
+
+        // Allow Enter key for password
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        function loadTools() {
+            // Load saved configuration
+            const savedConfig = localStorage.getItem('toolsConfig');
+            if (savedConfig) {
+                const config = JSON.parse(savedConfig);
+                allTools.forEach(tool => {
+                    if (config[tool.id] !== undefined) {
+                        tool.enabled = config[tool.id];
+                    }
+                });
+            }
+
+            // Render tools list
+            const toolsList = document.getElementById('toolsList');
+            toolsList.innerHTML = '';
+
+            allTools.forEach(tool => {
+                const toolToggle = document.createElement('div');
+                toolToggle.className = 'tool-toggle';
+                
+                toolToggle.innerHTML = `
+                    <div class="tool-info">
+                        <div class="tool-name">
+                            <span>${tool.icon}</span>
+                            <span>${tool.title}</span>
+                            ${tool.comingSoon ? '<span class="coming-soon-badge">בקרוב</span>' : ''}
+                        </div>
+                        <div class="tool-description">${tool.description}</div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="toggle-${tool.id}" ${tool.enabled ? 'checked' : ''}>
+                        <span class="slider"></span>
+                    </label>
+                `;
+
+                toolsList.appendChild(toolToggle);
+            });
+        }
+
+        function saveConfiguration() {
+            const config = {};
+            
+            allTools.forEach(tool => {
+                const toggle = document.getElementById(`toggle-${tool.id}`);
+                config[tool.id] = toggle.checked;
+            });
+
+            localStorage.setItem('toolsConfig', JSON.stringify(config));
+            showStatus('ההגדרות נשמרו בהצלחה! ✅', 'success');
+        }
+
+        function resetConfiguration() {
+            if (confirm('האם אתה בטוח שברצונך לאפס להגדרות ברירת המחדל?')) {
+                localStorage.removeItem('toolsConfig');
+                
+                // Reset to defaults
+                allTools.forEach(tool => {
+                    const toggle = document.getElementById(`toggle-${tool.id}`);
+                    if (toggle) {
+                        toggle.checked = tool.id === 'emotional-backpack'; // Only first tool enabled by default
+                    }
+                });
+                
+                showStatus('ההגדרות אופסו לברירת המחדל', 'success');
+            }
+        }
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.textContent = message;
+            statusDiv.className = `status-message ${type}`;
+            statusDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        function goToLanding() {
+            window.location.href = 'index.html'; // Landing page is now index.html
+        }
+
+        // Auto-focus password input
+        window.onload = function() {
+            document.getElementById('passwordInput').focus();
+        };
+    </script>
+</body>
+</html>

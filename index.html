@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>התרמיל הרגשי שלי - נעה כהן מרפאה בעיסוק</title>
+    <title>נעה כהן - מרפאה בעיסוק | כלים להורים וילדים</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
         
@@ -21,89 +21,35 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
         }
 
         .header {
-            background: linear-gradient(45deg, #ff6b6b, #ffa726);
-            color: white;
-            padding: 30px;
             text-align: center;
-            position: relative;
+            color: white;
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 80px;
-            height: 80px;
+        .logo-main {
+            width: 150px;
+            height: 150px;
             background: white;
             border-radius: 50%;
+            margin: 0 auto 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            padding: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 10px;
             overflow: hidden;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .main-content {
-            padding: 30px;
-        }
-
-        .tabs {
-            display: flex;
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 8px;
-            margin-bottom: 30px;
-            gap: 8px;
-        }
-
-        .tab {
-            flex: 1;
-            padding: 15px 20px;
-            background: transparent;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Heebo', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            color: #666;
-        }
-
-        .tab.active {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .tab-content.active {
-            display: block;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
         @keyframes fadeIn {
@@ -111,295 +57,157 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .section {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-right: 5px solid #ff6b6b;
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .section h3 {
-            color: #333;
-            margin-bottom: 20px;
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tool-header {
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .tool-header h3 {
             font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .tool-content {
+            padding: 25px;
+        }
+
+        .tool-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tool-features {
+            list-style: none;
+        }
+
+        .tool-features li {
+            padding: 8px 0;
+            color: #555;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .emoji {
-            font-size: 1.8rem;
+        .tool-features li:before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            font-family: 'Heebo', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            resize: vertical;
-            min-height: 50px;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .add-button {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
+        .tool-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
+            padding: 12px 25px;
+            border-radius: 25px;
             font-family: 'Heebo', sans-serif;
             font-size: 1rem;
             font-weight: 500;
-            transition: transform 0.2s ease;
-        }
-
-        .add-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-        }
-
-        .items-list {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
             margin-top: 15px;
         }
 
-        .item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border-right: 4px solid #667eea;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
-        .remove-button {
-            background: #ff4757;
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .breathing-container {
+        .footer {
             text-align: center;
-            padding: 40px 20px;
-        }
-
-        .balloon {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(45deg, #ff6b6b, #ffa726);
-            border-radius: 50%;
-            margin: 30px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: all 4s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 50px;
+            padding: 30px 0;
+            opacity: 0.8;
         }
 
-        .balloon.expanded {
-            transform: scale(1.3);
-            background: linear-gradient(45deg, #667eea, #764ba2);
-        }
-
-        .breathing-controls {
-            margin-top: 30px;
-        }
-
-        .breathing-button {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Heebo', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .breathing-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .breathing-instructions {
-            background: #e3f2fd;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border-right: 4px solid #2196f3;
-        }
-
-        .summary-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 30px;
-        }
-
-        .summary-section h3 {
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .summary-item {
+        .contact-info {
             background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
             backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
         }
 
-        .print-button {
-            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+        .coming-soon {
+            background: #f8f9fa;
+            border: 2px dashed #ddd;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .coming-soon .tool-header {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+        }
+
+        .coming-soon-badge {
+            background: #e74c3c;
             color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Heebo', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-top: 20px;
-            margin-left: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .print-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
-        }
-
-        .print-instructions {
-            background: #e8f5e8;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-right: 4px solid #4CAF50;
-            color: #2e7d32;
-        }
-
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            
-            .container {
-                box-shadow: none;
-                background: white;
-                border-radius: 0;
-            }
-            
-            .header {
-                background: white !important;
-                color: #333 !important;
-                border-bottom: 2px solid #B19CD9;
-                page-break-inside: avoid;
-                padding: 15px !important;
-            }
-            
-            .logo {
-                position: static !important;
-                margin: 0 auto 15px;
-                width: 50px;
-                height: 50px;
-            }
-            
-            .tabs, .breathing-container, .breathing-controls {
-                display: none !important;
-            }
-            
-            .tab-content {
-                display: block !important;
-            }
-            
-            .summary-section {
-                background: #f8f9fa !important;
-                color: #333 !important;
-                border: 2px solid #B19CD9;
-                margin-top: 10px !important;
-            }
-            
-            .summary-item {
-                background: white !important;
-                border: 1px solid #ddd;
-                margin-bottom: 15px;
-                page-break-inside: avoid;
-            }
-            
-            .print-button {
-                display: none !important;
-            }
-            
-            .section {
-                page-break-inside: avoid;
-                margin-bottom: 30px;
-            }
-            
-            .item {
-                background: white !important;
-                border: 1px solid #ddd !important;
-                page-break-inside: avoid;
-            }
-            
-            .remove-button {
-                display: none !important;
-            }
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 10px;
         }
 
         @media (max-width: 768px) {
-            .tabs {
-                flex-direction: column;
-            }
-            
             .header h1 {
                 font-size: 2rem;
             }
             
-            .main-content {
-                padding: 20px;
-            }
-            
-            .logo {
-                position: relative;
-                margin: 0 auto 20px;
-                top: 0;
-                left: 0;
-            }
-            
-            .header {
-                padding-top: 20px;
+            .tools-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -407,7 +215,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">
+            <div class="logo-main">
                 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="100" cy="100" r="95" fill="white" stroke="#E8D5F2" stroke-width="2"/>
                     <g transform="translate(100, 45)">
@@ -459,293 +267,128 @@
                     <text x="100" y="115" text-anchor="middle" font-family="Heebo, Arial, sans-serif" font-size="12" fill="#666" font-weight="400">מרפאה בעיסוק</text>
                 </svg>
             </div>
-            <h1>🎒 התרמיל הרגשי שלי</h1>
-            <p>מתכוננים יחד לכיתה א' - הורים וילדים</p>
+            <h1>ברוכים הבאים למרכז הכלים שלנו</h1>
+            <p>כלים דיגיטליים לעבודה משותפת של הורים וילדים</p>
         </div>
 
-        <div class="main-content">
-            <div class="tabs">
-                <button class="tab active" onclick="showTab('strengths')">במה אני טוב</button>
-                <button class="tab" onclick="showTab('challenges')">מה מאתגר אותי</button>
-                <button class="tab" onclick="showTab('help')">מה עוזר לי</button>
-                <button class="tab" onclick="showTab('breathing')">נשימת בלון</button>
-                <button class="tab" onclick="showTab('summary')">התרמיל שלי</button>
-            </div>
+        <div class="tools-grid" id="toolsGrid">
+            <!-- Tools will be dynamically loaded here -->
+        </div>
 
-            <div id="strengths" class="tab-content active">
-                <div class="section">
-                    <h3><span class="emoji">⭐</span>במה אני טוב?</h3>
-                    <p style="margin-bottom: 20px; color: #666;">חשבו יחד על הדברים שאתם טובים בהם. זה יכול להיות משהו שאתם אוהבים לעשות, משהו שמצליח לכם טוב, או תכונה חיובית שלכם.</p>
-                    <div class="input-group">
-                        <input type="text" id="strengthInput" class="input-field" placeholder="למשל: אני טוב בציור, אני עוזר לאחרים, אני אוהב לשאול שאלות...">
-                        <button class="add-button" onclick="addStrength()">הוסף לתרמיל 🎒</button>
-                    </div>
-                    <div id="strengthsList" class="items-list"></div>
-                </div>
-            </div>
-
-            <div id="challenges" class="tab-content">
-                <div class="section">
-                    <h3><span class="emoji">🎯</span>מה מאתגר אותי?</h3>
-                    <p style="margin-bottom: 20px; color: #666;">זה בסדר שישנם דברים שמאתגרים אותנו! כשאנחנו מכירים את האתגרים שלנו, אנחנו יכולים להתכונן אליהם טוב יותר.</p>
-                    <div class="input-group">
-                        <input type="text" id="challengeInput" class="input-field" placeholder="למשל: קשה לי להיפרד מאמא, אני מתרגש כשפוגש ילדים חדשים...">
-                        <button class="add-button" onclick="addChallenge()">הוסף לתרמיל 🎒</button>
-                    </div>
-                    <div id="challengesList" class="items-list"></div>
-                </div>
-            </div>
-
-            <div id="help" class="tab-content">
-                <div class="section">
-                    <h3><span class="emoji">🤝</span>מה יכול לעזור לי?</h3>
-                    <p style="margin-bottom: 20px; color: #666;">כשמשהו קשה לנו, חשוב לדעת למי ולמה אנחנו יכולים לפנות לעזרה. זה הופך אותנו לחזקים יותר!</p>
-                    <div class="input-group">
-                        <input type="text" id="helpInput" class="input-field" placeholder="למשל: לחבק את הדובי שלי, לדבר עם המורה, לעשות נשימות עמוקות...">
-                        <button class="add-button" onclick="addHelp()">הוסף לתרמיל 🎒</button>
-                    </div>
-                    <div id="helpsList" class="items-list"></div>
-                </div>
-            </div>
-
-            <div id="breathing" class="tab-content">
-                <div class="breathing-container">
-                    <h3><span class="emoji">🎈</span>נשימת הבלון הקסומה</h3>
-                    <div class="breathing-instructions">
-                        <p><strong>איך עושים נשימת בלון?</strong></p>
-                        <p>1. שימו יד על הבטן</p>
-                        <p>2. נשפו לאט דרך האף ותרגישו איך הבטן מתנפחת כמו בלון</p>
-                        <p>3. עצרו רגע</p>
-                        <p>4. נשפו לאט דרך הפה ותרגישו איך הבלון מתרוקן</p>
-                    </div>
-                    
-                    <div class="balloon" id="balloon">
-                        <span id="balloonText">נשימה רגועה</span>
-                    </div>
-                    
-                    <div class="breathing-controls">
-                        <button class="breathing-button" onclick="startBreathing()">התחל נשימת בלון</button>
-                        <button class="breathing-button" onclick="stopBreathing()">עצור</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="summary" class="tab-content">
-                <div class="summary-section">
-                    <h3>🎒 התרמיל הרגשי שלי מוכן!</h3>
-                    <p style="margin-bottom: 20px;">הנה כל מה שלמדתם על עצמכם והכנתם לכיתה א':</p>
-                    
-                    <div class="summary-item">
-                        <h4>⭐ החוזקות שלי:</h4>
-                        <div id="summaryStrengths">טרם נוספו חוזקות</div>
-                    </div>
-                    
-                    <div class="summary-item">
-                        <h4>🎯 האתגרים שלי:</h4>
-                        <div id="summaryChallenges">טרם נוספו אתגרים</div>
-                    </div>
-                    
-                    <div class="summary-item">
-                        <h4>🤝 מה שעוזר לי:</h4>
-                        <div id="summaryHelp">טרם נוספו כלי עזרה</div>
-                    </div>
-                    
-                    <div class="summary-item">
-                        <h4>🎈 הכלי הסודי שלי:</h4>
-                        <div>נשימת הבלון הקסומה - תמיד איתי!</div>
-                    </div>
-                    
-                    <button class="print-button" onclick="printBackpack()">הדפס את התרמיל שלי 🖨️</button>
-                </div>
+        <div class="footer">
+            <div class="contact-info">
+                <p>נעה כהן - מרפאה בעיסוק</p>
+                <p>📧 noa@example.com | 📱 050-1234567</p>
             </div>
         </div>
     </div>
 
     <script>
-        let strengths = [];
-        let challenges = [];
-        let helpItems = [];
-        let breathingInterval;
+        // Tool definitions
+        const allTools = [
+            {
+                id: 'emotional-backpack',
+                title: 'התרמיל הרגשי שלי',
+                icon: '🎒',
+                description: 'כלי אינטראקטיבי להכנה רגשית לכיתה א\'. עוזר לילדים ולהורים לזהות חוזקות, אתגרים וכלי התמודדות.',
+                features: [
+                    'זיהוי חוזקות אישיות',
+                    'הכרה באתגרים והתמודדות',
+                    'תרגילי נשימה אינטראקטיביים',
+                    'יצירת תרמיל רגשי אישי להדפסה'
+                ],
+                url: 'tools/emotional-backpack.html',
+                enabled: true
+            },
+            {
+                id: 'daily-routine',
+                title: 'הלוח היומי שלי',
+                icon: '📅',
+                description: 'לוח אינטראקטיבי ליצירת סדר יום מובנה. עוזר לילדים להתארגן ולהבין את מהלך היום.',
+                features: [
+                    'יצירת לוח זמנים אישי',
+                    'הוספת משימות ופעילויות',
+                    'תזכורות ויזואליות',
+                    'מעקב אחר התקדמות'
+                ],
+                url: '#',
+                enabled: false,
+                comingSoon: true
+            },
+            {
+                id: 'feelings-wheel',
+                title: 'גלגל הרגשות',
+                icon: '🎨',
+                description: 'כלי לזיהוי וביטוי רגשות. עוזר לילדים לתת שם לרגשות ולהבין את עצמם טוב יותר.',
+                features: [
+                    'גלגל רגשות אינטראקטיבי',
+                    'הסברים על כל רגש',
+                    'טיפים להתמודדות',
+                    'יומן רגשות אישי'
+                ],
+                url: '#',
+                enabled: false,
+                comingSoon: true
+            }
+        ];
 
-        function showTab(tabName) {
-            // Hide all tab contents
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-            
-            // Remove active class from all tabs
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            // Show selected tab content
-            document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked tab
-            event.target.classList.add('active');
-            
-            // Update summary when switching to summary tab
-            if (tabName === 'summary') {
-                updateSummary();
+        // Load configuration from localStorage
+        function loadConfiguration() {
+            const savedConfig = localStorage.getItem('toolsConfig');
+            if (savedConfig) {
+                const config = JSON.parse(savedConfig);
+                allTools.forEach(tool => {
+                    if (config[tool.id] !== undefined) {
+                        tool.enabled = config[tool.id];
+                    }
+                });
             }
         }
 
-        function addStrength() {
-            const input = document.getElementById('strengthInput');
-            const value = input.value.trim();
-            
-            if (value) {
-                strengths.push(value);
-                input.value = '';
-                renderStrengths();
-            }
-        }
+        // Render tools based on configuration
+        function renderTools() {
+            loadConfiguration();
+            const toolsGrid = document.getElementById('toolsGrid');
+            toolsGrid.innerHTML = '';
 
-        function addChallenge() {
-            const input = document.getElementById('challengeInput');
-            const value = input.value.trim();
-            
-            if (value) {
-                challenges.push(value);
-                input.value = '';
-                renderChallenges();
-            }
-        }
+            allTools.forEach((tool, index) => {
+                if (!tool.enabled) return;
 
-        function addHelp() {
-            const input = document.getElementById('helpInput');
-            const value = input.value.trim();
-            
-            if (value) {
-                helpItems.push(value);
-                input.value = '';
-                renderHelp();
-            }
-        }
-
-        function renderStrengths() {
-            const list = document.getElementById('strengthsList');
-            list.innerHTML = '';
-            
-            strengths.forEach((strength, index) => {
-                const item = document.createElement('div');
-                item.className = 'item';
-                item.innerHTML = `
-                    <span>⭐ ${strength}</span>
-                    <button class="remove-button" onclick="removeStrength(${index})">×</button>
-                `;
-                list.appendChild(item);
-            });
-        }
-
-        function renderChallenges() {
-            const list = document.getElementById('challengesList');
-            list.innerHTML = '';
-            
-            challenges.forEach((challenge, index) => {
-                const item = document.createElement('div');
-                item.className = 'item';
-                item.innerHTML = `
-                    <span>🎯 ${challenge}</span>
-                    <button class="remove-button" onclick="removeChallenge(${index})">×</button>
-                `;
-                list.appendChild(item);
-            });
-        }
-
-        function renderHelp() {
-            const list = document.getElementById('helpsList');
-            list.innerHTML = '';
-            
-            helpItems.forEach((help, index) => {
-                const item = document.createElement('div');
-                item.className = 'item';
-                item.innerHTML = `
-                    <span>🤝 ${help}</span>
-                    <button class="remove-button" onclick="removeHelp(${index})">×</button>
-                `;
-                list.appendChild(item);
-            });
-        }
-
-        function removeStrength(index) {
-            strengths.splice(index, 1);
-            renderStrengths();
-        }
-
-        function removeChallenge(index) {
-            challenges.splice(index, 1);
-            renderChallenges();
-        }
-
-        function removeHelp(index) {
-            helpItems.splice(index, 1);
-            renderHelp();
-        }
-
-        function startBreathing() {
-            const balloon = document.getElementById('balloon');
-            const balloonText = document.getElementById('balloonText');
-            balloon.classList.remove('expanded');
-            balloonText.textContent = 'נשימה רגועה 😌';
-
-            let isInhaling = true;
-            
-            stopBreathing(); // Stop any existing animation
-            
-            breathingInterval = setInterval(() => {
-                if (isInhaling) {
-                    balloon.classList.add('expanded');
-                    balloonText.textContent = 'שאפו לאט דרך האף... 🌬️';
-                } else {
-                    balloon.classList.remove('expanded');
-                    balloonText.textContent = 'נשפו לאט דרך הפה... 💨';
+                const toolCard = document.createElement(tool.comingSoon ? 'div' : 'a');
+                toolCard.className = `tool-card ${tool.comingSoon ? 'coming-soon' : ''}`;
+                if (!tool.comingSoon) {
+                    toolCard.href = tool.url;
                 }
-                isInhaling = !isInhaling;
-            }, 4000);
+                toolCard.style.animationDelay = `${index * 0.1}s`;
+
+                toolCard.innerHTML = `
+                    <div class="tool-header">
+                        <div class="tool-icon">${tool.icon}</div>
+                        <h3>${tool.title}</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p class="tool-description">${tool.description}</p>
+                        <ul class="tool-features">
+                            ${tool.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                        ${tool.comingSoon ? '<span class="coming-soon-badge">בקרוב!</span>' : '<span class="tool-button">כניסה לכלי ←</span>'}
+                    </div>
+                `;
+
+                toolsGrid.appendChild(toolCard);
+            });
         }
 
-        function stopBreathing() {
-            if (breathingInterval) {
-                clearInterval(breathingInterval);
-                breathingInterval = null;
-            }
-            
-            const balloon = document.getElementById('balloon');
-            const balloonText = document.getElementById('balloonText');
-            balloon.classList.remove('expanded');
-            balloonText.textContent = 'נשימה רגועה 😌';
-        }
+        // Initial render
+        renderTools();
 
-        function updateSummary() {
-            document.getElementById('summaryStrengths').innerHTML = 
-                strengths.length > 0 ? strengths.map(s => `• ${s}`).join('<br>') : 'טרם נוספו חוזקות';
-            
-            document.getElementById('summaryChallenges').innerHTML = 
-                challenges.length > 0 ? challenges.map(c => `• ${c}`).join('<br>') : 'טרם נוספו אתגרים';
-            
-            document.getElementById('summaryHelp').innerHTML = 
-                helpItems.length > 0 ? helpItems.map(h => `• ${h}`).join('<br>') : 'טרם נוספו כלי עזרה';
-        }
-
-        function printBackpack() {
-            window.print();
-        }
-
-        // Allow Enter key to add items
-        document.getElementById('strengthInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addStrength();
-            }
-        });
-
-        document.getElementById('challengeInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addChallenge();
-            }
-        });
-
-        document.getElementById('helpInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addHelp();
+        // Secret config page access (Ctrl+Shift+C)
+        let keys = [];
+        document.addEventListener('keydown', (e) => {
+            keys.push(e.key);
+            keys = keys.slice(-3);
+            if (keys.join('') === 'config' || (e.ctrlKey && e.shiftKey && e.key === 'C')) {
+                window.location.href = 'config.html';
             }
         });
     </script>
